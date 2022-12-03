@@ -9,18 +9,15 @@
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="{% url 'todo_app:index' %}">Home</a>
           </li>
-          {% if request.user.is_authenticated %}
           <span class="nav-item">
             <a class="nav-link" href="#">{{ request.user }}</a>
           </span>
           <li class="nav-item right">
-            <a class="nav-link" href="{% url 'todo_app:logout' %}">Logout</a>
+            <a class="nav-link" href="#">Logout</a>
           </li>
-          {% else %}
           <li class="nav-item right">
-            <a class="nav-link" href="{% url 'todo_app:login' %}">Login</a>
+            <a class="nav-link" href="#">Login</a>
           </li>
-          {% endif %}
         </ul>
       </div>
     </div>
