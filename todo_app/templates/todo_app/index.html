@@ -1,0 +1,82 @@
+{% extends 'todo_app/base.html' %}
+
+{% block content %}
+
+<div class="input-group mb-3">
+  <a href="{% url 'todo_app:add_task' %}"><button class='btn btn-primary'>Add Task</button></a>
+</div>
+
+<div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'in-progress')" id="defaultOpen">In Progress</button>
+    <button class="tablinks" onclick="openCity(event, 'completed')">Completed</button>
+  </div>
+  
+  <div id="in-progress" class="tabcontent">
+      <table class="table table-sm">
+        {% if in_progress_tasks %}
+            <tr>
+              <th>Task</th>
+              <!-- <th>Created</th> -->
+              <th>Mark Complete</th>
+              <th>Update</th>
+              <th>Remove</th>
+            </tr>
+            {% for task in in_progress_tasks %}
+              <tr>
+                <td>{{ task.task_name }}</td>
+                <!-- <td>{{ task.date_created }}</td> -->
+                <td>
+                  <a href="{% url 'todo_app:mark_complete_or_incomplete' task.id %}">
+                  <i class="bi bi-check2-square"></i></a>
+                </td>
+                <td>
+                  <a href="{% url 'todo_app:update_task' task.id %}">
+                    <i class="bi bi-pen"></i></a>
+                </td>
+                <td>
+                  <a href="{% url 'todo_app:delete_task' task.id %}">
+                    <i class="bi bi-trash3-fill"></i></a>
+                </td>
+              </tr>
+            {% endfor %}
+        {% else %}
+            <p>No tasks available </p>
+        {% endif %}
+      </table>
+  </div>
+  
+  <div id="completed" class="tabcontent">
+    <table class="table table-sm">
+        {% if completed_tasks %}
+            <tr>
+              <th>Task</th>
+              <!-- <th>Created</th> -->
+              <th>Mark Pending</th>
+              <th>Update</th>
+              <th>Remove</th>
+            </tr>
+            {% for task in completed_tasks %}
+              <tr>
+                <td>{{ task.task_name }}</td>
+                <!-- <td>{{ task.date_created }}</td> -->
+                <td>
+                  <a href="{% url 'todo_app:mark_complete_or_incomplete' task.id %}">
+                  <i class="bi bi-check2-square"></i></a>
+                </td>
+                <td>
+                  <a href="{% url 'todo_app:update_task' task.id %}">
+                    <i class="bi bi-pen"></i></a>
+                </td>
+                <td>
+                  <a href="{% url 'todo_app:delete_task' task.id %}">
+                    <i class="bi bi-trash3-fill"></i></a>
+                </td>
+              </tr>
+            {% endfor %}
+        {% else %}
+            <p>No tasks available </p>
+        {% endif %}
+      </table>
+  </div>
+
+{% endblock content %}

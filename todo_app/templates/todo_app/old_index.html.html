@@ -1,0 +1,49 @@
+{% extends 'todo_app/base.html' %}
+
+{% block content %}
+
+{% include 'todo_app/add_task_form.html' %}
+
+<div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'in-progress')" id="defaultOpen">In Progress</button>
+    <button class="tablinks" onclick="openCity(event, 'completed')">Completed</button>
+  </div>
+  
+  <div id="in-progress" class="tabcontent">
+    
+    <ul class="list-group">
+        {% if in_progress_tasks %}
+            {% for task in in_progress_tasks %}
+                <li class="list-group-item">{{ task }}
+                    <div style="float: right;">
+                        <a href="{% url 'todo_app:mark_complete_or_incomplete' task.id %}"><i class="bi bi-check2-square"></i></a>
+                        <a href="#"><i class="bi bi-pen"></i></a>
+                        <a href="#"><i class="bi bi-trash3-fill"></i></a>
+                    </div>
+                </li>
+            {% endfor %}
+        {% else %}
+            <li class="list-group-item">-- No tasks Available --</li>
+        {% endif %}
+      </ul>
+  </div>
+  
+  <div id="completed" class="tabcontent">
+    <ul class="list-group">
+        {% if completed_tasks %}
+            {% for task in completed_tasks %}
+                <li class="list-group-item">{{ task }}
+                    <div style="float: right;">
+                        <a href="{% url 'todo_app:mark_complete_or_incomplete' task.id %}"><i class="bi bi-check2-square"></i></a>
+                        <a href="#"><i class="bi bi-pen"></i></a>
+                        <a href="#"><i class="bi bi-trash3-fill"></i></a>
+                    </div>
+                </li>
+            {% endfor %}
+        {% else %}
+            <li class="list-group-item">-- No tasks Available --</li>
+        {% endif %}
+      </ul>
+  </div>
+
+{% endblock content %}
