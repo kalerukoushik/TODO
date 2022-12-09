@@ -3,9 +3,9 @@ from . import views
 
 app_name = "todo_app"
 urlpatterns = [
-    # path('login/', views.loginPage, name="login"),
-    # path('register/', views.registerPage, name="register"),
-    # path('logout/', views.logoutUser, name="logout"),
+    path('login/', views.loginPage, name="login"),
+    path('register/', views.registerPage, name="register"),
+    path('logout/', views.logoutUser, name="logout"),
     path('', views.index, name="index"),
     path('mark_complete_or_incomplete/<str:pk>/', 
         views.mark_complete_or_incomplete, name='mark_complete_or_incomplete'),

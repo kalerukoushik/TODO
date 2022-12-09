@@ -6,6 +6,7 @@
   <a href="{% url 'todo_app:add_task' %}"><button class='btn btn-primary'>Add Task</button></a>
 </div>
 
+
 <div class="tab">
     <button class="tablinks" onclick="openCity(event, 'in-progress')" id="defaultOpen">In Progress</button>
     <button class="tablinks" onclick="openCity(event, 'completed')">Completed</button>
@@ -13,6 +14,10 @@
   
   <div id="in-progress" class="tabcontent">
       <table class="table table-sm">
+        <div>
+          <span>Total Tasks: {{ in_progress_tasks.count }}</span>
+        </div>
+        <hr>
         {% if in_progress_tasks %}
             <tr>
               <th>Task</th>
@@ -47,6 +52,10 @@
   
   <div id="completed" class="tabcontent">
     <table class="table table-sm">
+      <div>
+        <span>Total Tasks: {{ completed_tasks.count }}</span>
+      </div>
+      <hr>
         {% if completed_tasks %}
             <tr>
               <th>Task</th>
